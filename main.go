@@ -4,9 +4,11 @@ import (
 	"flag"
 	"nalanda/db"
 	"nalanda/worker"
+	// "nalanda/permutationGen"
 )
 
 func main() {
+	// permutationGen.Generate(21)
 
 	//flag for number of concurrent gophers
 	num := flag.Int("w", 30, "number of workers")
