@@ -162,12 +162,18 @@ func Parser(resp *http.Response, enum int) (models.Student, models.Address, mode
 	})
 
 	//exp date
-	strippedRes := stripchars(doc.Find("#memberentry_library > ol > li:nth-child(2)").Text(), " \n")[15:]
-	s.ExpDate = strippedRes
+	strippedRes := stripchars(doc.Find("#memberentry_library > ol > li:nth-child(2)").Text(), " \n")
+	if len(strippedRes) > 15 {
+		strippedRes = strippedRes[15:]
+		s.ExpDate = strippedRes
+	}
 
 	//category
-	strippedRes = stripchars(doc.Find("#memberentry_library > ol > li:nth-child(4)").Text(), " \n")[9:]
-	s.Category = strippedRes
+	strippedRes = stripchars(doc.Find("#memberentry_library > ol > li:nth-child(4)").Text(), " \n")
+	if len(strippedRes) > 9 {
+		strippedRes = strippedRes[9:]
+		s.Category = strippedRes
+	}
 
 	//home lib
 	doc.Find("#borrower_branchcode").Children().Each(func(i int, sel *goquery.Selection) {
@@ -188,12 +194,17 @@ func Parser(resp *http.Response, enum int) (models.Student, models.Address, mode
 
 	//book category
 	strippedRes = stripchars(doc.Find("#memberentry-form > div:nth-child(7) > div > fieldset > ol > li:nth-child(2)").Text(), " \n")[19:]
-	s.BookCategory = strippedRes
+	if len(strippedRes) > 19 {
+		strippedRes = strippedRes[19:]
+		s.BookCategory = strippedRes
+	}
 
 	//roll number
-	strippedRes = stripchars(doc.Find("#memberentry-form > div:nth-child(7) > div > fieldset > ol > li:nth-child(4)").Text(), " \n")[19:]
-	s.RollNo = strippedRes
-
+	strippedRes = stripchars(doc.Find("#memberentry-form > div:nth-child(7) > div > fieldset > ol > li:nth-child(4)").Text(), " \n")
+	if len(strippedRes) > 19 {
+		strippedRes = strippedRes[19:]
+		s.RollNo = strippedRes
+	}
 	return *s, *a, *c, *r
 }
 
