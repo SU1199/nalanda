@@ -193,7 +193,7 @@ func Parser(resp *http.Response, enum int) (models.Student, models.Address, mode
 	})
 
 	//book category
-	strippedRes = stripchars(doc.Find("#memberentry-form > div:nth-child(7) > div > fieldset > ol > li:nth-child(2)").Text(), " \n")[19:]
+	strippedRes = stripchars(doc.Find("#memberentry-form > div:nth-child(7) > div > fieldset > ol > li:nth-child(2)").Text(), " \n")
 	if len(strippedRes) > 19 {
 		strippedRes = strippedRes[19:]
 		s.BookCategory = strippedRes
